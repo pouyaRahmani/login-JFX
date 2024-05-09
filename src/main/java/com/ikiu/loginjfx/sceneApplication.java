@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 // no heloooo
+//feiekdkdkeidkdkeidkeeieddeee
+// inte t name of gode
 
 public class sceneApplication extends Application {
 
