@@ -5,9 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-// pul to taghirat
-// fetch into another branch
 // hello sam
+// say hi to pouya
 
 
 public class sceneApplication extends Application {
