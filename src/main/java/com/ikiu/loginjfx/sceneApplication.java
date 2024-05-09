@@ -6,9 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 // no heloooo
-// pulla ddd
-// fetch to s.th else
-// fjfjdd pull to develop
 
 public class sceneApplication extends Application {
 
