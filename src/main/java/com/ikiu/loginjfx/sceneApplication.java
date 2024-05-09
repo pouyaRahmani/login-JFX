@@ -5,9 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-// no heloooo
-//feiekdkdkeidkdkeidkeeieddeee
-// inte t name of gode
+// deleted
 
 public class sceneApplication extends Application {
 
