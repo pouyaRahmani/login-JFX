@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 // no heloooo
+// pulla ddd
 // fetch to s.th else
 
 public class sceneApplication extends Application {
