@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class sceneApplication extends Application {
+
+
+
     public void start(Stage stage){
         try {
             Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
