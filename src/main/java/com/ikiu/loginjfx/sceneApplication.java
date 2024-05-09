@@ -5,7 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-// deleted
+// pul to taghirat
+
 
 public class sceneApplication extends Application {
 
