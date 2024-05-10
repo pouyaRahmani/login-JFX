@@ -1,6 +1,8 @@
 package com.ikiu.loginjfx;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String firstName;
     private String lastName;
     private int age;
@@ -124,10 +126,12 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    public String getRole(){
+
+    public String getRole() {
         return role;
     }
-    void setRole(String role){
+
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -138,4 +142,3 @@ public class User {
                 email + "," + username + "," + password + "," + role;
     }
 }
-

@@ -105,7 +105,7 @@
                 <Font name="Arial Bold" size="16.0" />
             </font>
         </Label>
-        <ComboBox fx:id="roleComboBox" layoutX="429.0" layoutY="416.0" prefHeight="29.0" prefWidth="135.0" promptText="Select Role" AnchorPane.bottomAnchor="138.0">
+        <ComboBox fx:id="roleComboBox" layoutX="429.0" layoutY="416.0" onAction="#onRoleComboBoxAction" prefHeight="29.0" prefWidth="135.0" promptText="Select Role" AnchorPane.bottomAnchor="138.0">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="admin" />

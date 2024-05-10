@@ -17,7 +17,7 @@ public class LoginController {
     private TextField userNameTextField;
 
     @FXML
-    private TextField emailTextField;
+    private TextField passwordTextField;
 
     @FXML
     public void goToSignUp(ActionEvent event) throws IOException {
@@ -43,25 +43,24 @@ public class LoginController {
     // Method to validate login credentials
     private boolean validateLogin() {
         String username = userNameTextField.getText();
-        String email = emailTextField.getText();
+        String password = passwordTextField.getText();
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("userdata.dat"))) {
-            Object obj;
-            while ((obj = ois.readObject()) != null) {
+            while (true) {
+                Object obj = ois.readObject();
                 if (obj instanceof User) {
                     User user = (User) obj;
-                    if (user.getUsername().equals(username) && user.getEmail().equals(email)) {
-                        // Username and email match, login is successful
+                    if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                        // Username and password match, login is successful
                         return true;
                     }
                 }
             }
-        } catch (EOFException e) {
-            // End of file reached
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            // Handle any exceptions, such as file not found or EOFException
+            e.printStackTrace(); // Print the stack trace for debugging
         }
-        // No matching user found, login failed
+        // No matching user found or an error occurred, login failed
         return false;
     }
 
@@ -70,7 +69,7 @@ public class LoginController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main.fxml"));
             Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root, 800, 600);
+            Scene scene = new Scene(root);
             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             currentStage.setScene(scene);
             currentStage.show();
@@ -78,6 +77,7 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+
 
     // Method to show an alert
     private void showAlert(Alert.AlertType alertType, String title, String content) {

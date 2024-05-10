@@ -7,13 +7,10 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class SignupController {
 
@@ -52,10 +49,13 @@ public class SignupController {
 
     @FXML
     private TextField compasswordTextField;
+
     @FXML
-    private ComboBox <String> roleComboBox;
+    private ComboBox<String> roleComboBox;
+
     private String role;
     private Stage stage;
+
     public void setStage(Stage stage) {
         this.stage = stage;
     }
@@ -101,7 +101,6 @@ public class SignupController {
         alert.showAndWait();
     }
 
-
     private User createUserFromForm() {
         // Create a User object from the form data
         User user = new User();
@@ -125,14 +124,17 @@ public class SignupController {
         role = roleComboBox.getValue();
     }
 
-
     private void saveUser(User user) {
         // Save user data to a file
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("userdata.dat", true))) {
-            writer.write(user.toString() + "\n");
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("userdata.dat", true))) {
+            outputStream.writeObject(user);
+            outputStream.flush();
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to save data.");
         }
+
+        // Clear all text fields after saving
+        clearFields();
     }
 
     private void clearFields() {

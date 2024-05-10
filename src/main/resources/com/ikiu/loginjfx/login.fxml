@@ -25,7 +25,7 @@
         </Label>
         <Button layoutX="328.0" layoutY="268.0" mnemonicParsing="false" onAction="#onSignInButtonClick" style="-fx-background-color: #17E0AE;" text="Sign in" />
         <TextField fx:id="userNameTextField" layoutX="168.0" layoutY="137.0" prefHeight="26.0" prefWidth="214.0" />
-        <TextField fx:id="emailTextField" layoutX="168.0" layoutY="186.0" prefHeight="26.0" prefWidth="214.0" />
+        <TextField fx:id="passwordTextField" layoutX="168.0" layoutY="186.0" prefHeight="26.0" prefWidth="214.0" />
         <Button layoutX="168.0" layoutY="268.0" mnemonicParsing="false" onAction="#goToSignUp" style="-fx-background-color: #17E0AE;" text="Sign up" />
     </children>
 </AnchorPane>
