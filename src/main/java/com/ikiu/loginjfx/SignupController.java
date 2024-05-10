@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -50,9 +52,10 @@ public class SignupController {
 
     @FXML
     private TextField compasswordTextField;
-
+    @FXML
+    private ComboBox <String> roleComboBox;
+    private String role;
     private Stage stage;
-
     public void setStage(Stage stage) {
         this.stage = stage;
     }
@@ -98,6 +101,7 @@ public class SignupController {
         alert.showAndWait();
     }
 
+
     private User createUserFromForm() {
         // Create a User object from the form data
         User user = new User();
@@ -112,8 +116,15 @@ public class SignupController {
         user.setEmail(emailTextField.getText());
         user.setUsername(usernameTextField.getText());
         user.setPassword(passwordTextField.getText());
+        user.setRole(role);
         return user;
     }
+
+    @FXML
+    public void onRoleComboBoxAction(ActionEvent event) {
+        role = roleComboBox.getValue();
+    }
+
 
     private void saveUser(User user) {
         // Save user data to a file
@@ -138,6 +149,7 @@ public class SignupController {
         usernameTextField.clear();
         passwordTextField.clear();
         compasswordTextField.clear();
+        roleComboBox.getSelectionModel().clearSelection();
     }
 
     private void switchToLoginScene(ActionEvent actionEvent) {

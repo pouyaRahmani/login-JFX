@@ -12,6 +12,7 @@ public class User {
     private String email;
     private String username;
     private String password;
+    private String role;
 
     // Constructors
     public User() {
@@ -19,7 +20,7 @@ public class User {
 
     public User(String firstName, String lastName, int age, String birthday, String gender,
                 String civilStatus, String country, String contact, String email,
-                String username, String password) {
+                String username, String password , String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -31,6 +32,7 @@ public class User {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     // Getters and setters for all fields
@@ -122,12 +124,18 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    public String getRole(){
+        return role;
+    }
+    void setRole(String role){
+        this.role = role;
+    }
 
     @Override
     public String toString() {
         return firstName + "," + lastName + "," + age + "," + birthday + "," +
                 gender + "," + civilStatus + "," + country + "," + contact + "," +
-                email + "," + username + "," + password;
+                email + "," + username + "," + password + "," + role;
     }
 }
 
