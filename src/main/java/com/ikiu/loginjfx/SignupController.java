@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SignupController {
 
@@ -125,16 +127,33 @@ public class SignupController {
     }
 
     private void saveUser(User user) {
-        // Save user data to a file
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("userdata.dat", true))) {
-            outputStream.writeObject(user);
-            outputStream.flush();
+        // Save user data to a file using HashSet
+        String filename = "userdata.dat";
+        Set<User> users = readUsersFromFile(filename);
+        users.add(user);
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(users);
+            System.out.println("User information saved to " + filename);
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to save data.");
         }
 
         // Clear all text fields after saving
         clearFields();
+    }
+
+    private Set<User> readUsersFromFile(String filename) {
+        Set<User> users = new HashSet<>();
+        File file = new File(filename);
+        if (file.exists()) {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+                users = (Set<User>) ois.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return users;
     }
 
     private void clearFields() {

@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class LoginController {
     @FXML
@@ -45,23 +47,29 @@ public class LoginController {
         String username = userNameTextField.getText();
         String password = passwordTextField.getText();
 
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("userdata.dat"))) {
-            while (true) {
-                Object obj = ois.readObject();
-                if (obj instanceof User) {
-                    User user = (User) obj;
-                    if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                        // Username and password match, login is successful
-                        return true;
-                    }
-                }
+        Set<User> users = readUsersFromFile("userdata.dat");
+        for (User user : users) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                // Username and password match, login is successful
+                return true;
             }
-        } catch (Exception e) {
-            // Handle any exceptions, such as file not found or EOFException
-            e.printStackTrace(); // Print the stack trace for debugging
         }
-        // No matching user found or an error occurred, login failed
+
+        // No matching user found, login failed
         return false;
+    }
+
+    private Set<User> readUsersFromFile(String filename) {
+        Set<User> users = new HashSet<>();
+        File file = new File(filename);
+        if (file.exists()) {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+                users = (Set<User>) ois.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return users;
     }
 
     // Method to switch to the main scene
@@ -77,7 +85,6 @@ public class LoginController {
             e.printStackTrace();
         }
     }
-
 
     // Method to show an alert
     private void showAlert(Alert.AlertType alertType, String title, String content) {

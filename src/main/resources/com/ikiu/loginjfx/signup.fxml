@@ -111,7 +111,6 @@
                     <String fx:value="admin" />
                     <String fx:value="user" />
                 </FXCollections>
-
             </items>
         </ComboBox>
         <Label layoutX="376.0" layoutY="414.0" text="Role:">
@@ -119,6 +118,33 @@
                 <Font size="16.0" />
             </font>
         </Label>
-
+        <ComboBox fx:id="managerComboBox" layoutX="422.0" layoutY="230.0" prefHeight="29.0" prefWidth="135.0" promptText="Is Manager">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="true" />
+                    <String fx:value="false" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Label layoutX="317.0" layoutY="230.0" prefHeight="22.0" prefWidth="84.0" text="Is Manager :">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <ComboBox fx:id="activityComboBox" layoutX="422.0" layoutY="274.0" prefHeight="29.0" prefWidth="135.0" promptText="Activity Status">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="ACTIVE" />
+                    <String fx:value="NO_PAYOFF" />
+                    <String fx:value="FIRED" />
+                    <String fx:value="RETIRED" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Label layoutX="317.0" layoutY="274.0" prefHeight="22.0" prefWidth="84.0" text="Activity Status :">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>
